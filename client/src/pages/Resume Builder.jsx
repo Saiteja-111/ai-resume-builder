@@ -183,7 +183,45 @@ const ResumeBuilder = () => {
       );
 
       try {
-        setResumeData(data.updatedResume || data);
+        const fixedData = data.updatedResume || data;
+
+const safeData = {
+  ...fixedData,
+
+  achievements: (fixedData.achievements || []).map((a) =>
+    typeof a === "string"
+      ? a
+      : `${a.title || ""} ${a.description || ""}`
+  ),
+
+  project: (fixedData.project || []).map((p) => ({
+    ...p,
+    description:
+      typeof p.description === "string"
+        ? p.description
+        : JSON.stringify(p.description),
+  })),
+
+  experience: (fixedData.experience || []).map((exp) => ({
+    ...exp,
+    description:
+      typeof exp.description === "string"
+        ? exp.description
+        : JSON.stringify(exp.description),
+  })),
+};
+
+setResumeData((prev) => ({
+  ...prev,
+  personal_info: safeData.personal_info || prev.personal_info,
+  professional_summary:
+    safeData.professional_summary || prev.professional_summary,
+  experience: safeData.experience || prev.experience,
+  education: safeData.education || prev.education,
+  project: safeData.project || prev.project,
+  skills: safeData.skills || prev.skills,
+  achievements: safeData.achievements || prev.achievements,
+}));
       } catch (err) {
         console.error("Invalid AI response:", err);
         toast.error("AI returned invalid resume format");
