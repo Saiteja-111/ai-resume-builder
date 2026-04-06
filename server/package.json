@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@imagekit/nodejs": "^7.3.0",
+    "bcrypt": "^6.0.0",
+    "canvas": "^3.2.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "groq-sdk": "^1.1.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.1",
+    "multer": "^2.1.1",
+    "openai": "^6.32.0",
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^3.11.174"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
